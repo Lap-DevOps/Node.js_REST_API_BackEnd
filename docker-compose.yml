@@ -1,0 +1,14 @@
+version: '3.7'
+
+services:
+  postgres:
+    image: postgres
+    restart: always
+    environment:
+      POSTGRES_USER: 'nest'
+      POSTGRES_PASSWORD: 'nest'
+      POSTGRES_DB: 'nest-backend'
+    ports:
+      - "5435:5432"
+    volumes:
+      - ./data:/var/lib/postgresql/data
