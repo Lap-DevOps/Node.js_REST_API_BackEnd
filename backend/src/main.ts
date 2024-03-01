@@ -6,10 +6,10 @@ async function start() {
   const PORT = process.env.PORT || 5000 ;
   const app = await NestFactory.create(AppModule);
   const config =new DocumentBuilder()
-  .setTitle('NestJS API')
-  .setDescription('NestJS API ')
+  .setTitle('Nest JS API')
+  .setDescription('Nest JS API ')
   .setVersion('1.0.0')
-  .addTag('NestJS')
+  .addTag('Nest JS')
   .build();
 
   const document =SwaggerModule.createDocument(app, config);
