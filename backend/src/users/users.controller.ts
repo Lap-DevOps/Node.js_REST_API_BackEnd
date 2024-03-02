@@ -5,7 +5,7 @@ import { ApiOkResponse, ApiOperation, ApiTags } from '@nestjs/swagger';
 import { User } from './user.model';
 
 
-@ApiTags('Users')
+@ApiTags('users')
 @Controller('users')
 export class UsersController {
 
