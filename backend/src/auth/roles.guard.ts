@@ -12,16 +12,16 @@ export class RolesGuard implements CanActivate {
         private reflector: Reflector) { }
 
     canActivate(context: ExecutionContext): boolean | Promise<boolean> | Observable<boolean> {
-        const req = context.switchToHttp().getRequest();
+    
         try {
-            const requiredRoles = this.reflector.getAllAndOverride(ROLES_KEY, [
+            const requiredRoles = this.reflector.getAllAndOverride<string[]>(ROLES_KEY, [
                 context.getHandler(),
                 context.getClass(),
             ])
             if (!requiredRoles) {
                 return true;
             }
-
+            const req = context.switchToHttp().getRequest();
             const authHeader = req.headers.authorization;
             const bearer = authHeader.split(' ')[0];
             const token = authHeader.split(' ')[1];
@@ -33,9 +33,9 @@ export class RolesGuard implements CanActivate {
             return user.roles.some(role => requiredRoles.includes(role.value));
         } catch (e) {
             console.log(e)
-            throw new HttpException('User is not authorized', HttpStatus.FORBIDDEN);
-
+            throw new HttpException( 'User is not authorized' , HttpStatus.FORBIDDEN);
+            
         }
-
+       
     }
 }
