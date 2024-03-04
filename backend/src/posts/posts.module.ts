@@ -4,10 +4,11 @@ import { PostsController } from './posts.controller';
 import { User } from 'src/users/user.model';
 import { SequelizeModule } from '@nestjs/sequelize';
 import { Post } from './posts.model';
+import { FilesModule } from 'src/files/files.module';
 
 @Module({
   providers: [PostsService],
   controllers: [PostsController],
-  imports: [ SequelizeModule.forFeature([User,Post])],
+  imports: [SequelizeModule.forFeature([User, Post]), FilesModule],
 })
-export class PostsModule {}
+export class PostsModule { }
