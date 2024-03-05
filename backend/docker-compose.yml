@@ -1,0 +1,35 @@
+version: '3.7'
+
+services:
+  postgres:
+    container_name: postgres
+    image: postgres
+    restart: always
+    environment:
+      POSTGRES_USER: 'nest'
+      POSTGRES_PASSWORD: 'nest'
+      POSTGRES_DB: 'nest-backend'
+      PG_DATA: '/var/lib/postgresql/data'
+    ports:
+      - "5435:5432"
+    volumes:
+      - ./data:/var/lib/postgresql/data
+
+  main:
+    container_name: main
+    build:
+      context: .
+    env_file:
+      - .development.env
+
+    volumes:
+      - .:/app
+      - /app/node_modules
+    ports:
+      - "5000:5000"
+      - 9229:9229
+
+    command: npm run start
+    restart: always
+    depends_on:
+      - postgres
