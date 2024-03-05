@@ -35,6 +35,7 @@ import { FilesModule } from './files/files.module';
       database: process.env.POSTGRES_DB,
       models: [User, Role, UserRoles, Post],
       autoLoadModels: true,
+      
 
     }),
     UsersModule,

@@ -33,6 +33,9 @@ export class Post extends Model<Post, PostCreationAttrs>{
     @Column({type: DataType.STRING})
     image: string
 
+    @Column({type: DataType.BOOLEAN, defaultValue: false})
+    banned: boolean
+
     @ForeignKey(() => User)
     @Column({type: DataType.INTEGER})
     userId: number;
